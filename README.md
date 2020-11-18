@@ -21,6 +21,8 @@ from board import *
 rtcI2C=busio.I2C(SCL,SDA)
 rtc=adafruit_ds3231.DS3231(rtcI2C)
 
+t=rtc.datetime
+
 while True:
     humidity, temperature = Adafruit_DHT.read_retry(11,24)
     if humidity is not None and temperature is not None:
@@ -34,4 +36,12 @@ while True:
             "minute": t.tm_min
         }
         print(tempSensorRTC)
+```
+
+### ส่งข้อมูลไปยัง server โดยใช้ hppt post
+```py
+import requests
+
+tempSensorRTC={...}
+requests.post('http://localhost:3009/addData',tempSensorRTC)
 ```
