@@ -43,5 +43,34 @@ while True:
 import requests
 
 tempSensorRTC={...}
-requests.post('http://localhost:3009/addData',tempSensorRTC)
+requests.post('http://localhost:3014/addData',tempSensorRTC)
 ```
+
+## อ่านข้อมูลจากฐานข้อมูล
+
+### Mongoose
+- schema
+    ```js
+    var mongoose=require('mongoose');
+    var Schema=mongoose.Schema;
+
+    var tempSensorRTCSchema=new Schema({
+        temperature: Number,
+        humidity: Number,
+        year: Number,
+        month: Number,
+        day: Number,
+        hour: Number,
+        minute: Number
+    });
+    ```
+- model
+    ```js
+    const temp_rtc=mongoose.model('temp_rtc',tempSensorRTCSchema);
+    ```
+    - method
+        ```js
+        temp_rtc.find({},(err,data)=>{
+	        if(!err)res.render('index',{tempData: data});
+        });
+        ```
