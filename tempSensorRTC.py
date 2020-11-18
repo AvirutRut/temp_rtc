@@ -23,7 +23,7 @@ while True:
             "hour": t.tm_hour,
             "minute": t.tm_min
         }
-        res=requests.post('http://localhost:3009/addData',tempSensorRTC)
+        res=requests.post('http://localhost:3014/addData',tempSensorRTC)
         print(res) 
         #print(str(humidity)+"% "+str(temperature)+"*C")
         #print(rtc.datetime)
